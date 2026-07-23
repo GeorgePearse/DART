@@ -18,7 +18,6 @@ import argparse
 import os
 import sys
 import time
-from pathlib import Path
 
 import numpy as np
 import torch
@@ -109,7 +108,7 @@ def export_and_test(backbone, dummy, img_tensor, ref_dict, label, onnx_path,
     )
 
     # Test accuracy
-    print(f"  Testing accuracy...")
+    print("  Testing accuracy...")
     from sam3.trt.trt_backbone import TRTBackbone
     trt_bb = TRTBackbone(engine_path, device="cuda")
 
@@ -122,7 +121,7 @@ def export_and_test(backbone, dummy, img_tensor, ref_dict, label, onnx_path,
         torch.cuda.synchronize()
 
     trt_fpn = trt_out["backbone_fpn"]
-    print(f"  Cosine similarity vs PyTorch FP32:")
+    print("  Cosine similarity vs PyTorch FP32:")
     for i in range(len(trt_fpn)):
         k = f"fpn_{i}"
         cos = cosine_similarity(ref_dict[k], trt_fpn[i])
@@ -130,7 +129,7 @@ def export_and_test(backbone, dummy, img_tensor, ref_dict, label, onnx_path,
         print(f"    {k}: cos={cos:.6f} [{status}]")
 
     # Also test with pure FP16 (no mixed precision)
-    print(f"\n  Building PURE FP16 engine (no mixed precision)...")
+    print("\n  Building PURE FP16 engine (no mixed precision)...")
     engine_path_pure = engine_path.replace(".engine", "_pure.engine")
     build_engine(
         onnx_path=onnx_path,
@@ -148,7 +147,7 @@ def export_and_test(backbone, dummy, img_tensor, ref_dict, label, onnx_path,
         torch.cuda.synchronize()
 
     trt_fpn2 = trt_out2["backbone_fpn"]
-    print(f"  Pure FP16 cosine similarity:")
+    print("  Pure FP16 cosine similarity:")
     for i in range(len(trt_fpn2)):
         k = f"fpn_{i}"
         cos = cosine_similarity(ref_dict[k], trt_fpn2[i])

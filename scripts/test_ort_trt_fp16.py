@@ -7,7 +7,6 @@ handle FP16 precision conversion differently from standalone TRT engine builds.
 
 import argparse
 import torch
-import numpy as np
 import onnxruntime as ort
 from PIL import Image
 from torchvision.transforms import v2

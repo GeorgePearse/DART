@@ -3,7 +3,7 @@
 
 # pyre-unsafe
 
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import torch
 from torch import nn, Tensor

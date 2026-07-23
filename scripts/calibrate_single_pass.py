@@ -176,7 +176,6 @@ def collect_prototypes(
         det_probs = det_scores[-1, 0, :, 0].float().sigmoid()  # (Q,)
 
         # Get GT boxes in cxcywh normalized form
-        from sam3.model.box_ops import box_cxcywh_to_xyxy
         orig_h, orig_w = sp_state["original_height"], sp_state["original_width"]
         scale = torch.tensor([orig_w, orig_h, orig_w, orig_h],
                              device=device, dtype=torch.float32)
@@ -344,7 +343,6 @@ def finetune_hs_proj(
             det_scores = model.dot_prod_scoring(hs_t, prompt, prompt_mask)
             det_probs = det_scores[-1, 0, :, 0].float().sigmoid()
 
-            from sam3.model.box_ops import box_cxcywh_to_xyxy
             orig_h, orig_w = sp_state["original_height"], sp_state["original_width"]
             scale = torch.tensor([orig_w, orig_h, orig_w, orig_h],
                                  device=device, dtype=torch.float32)

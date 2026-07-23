@@ -11,7 +11,7 @@ handles padding/slicing for the actual number of classes at runtime.
 """
 
 import math
-from typing import Dict, List, Optional, Tuple
+from typing import List, Tuple
 
 import torch
 from torch import Tensor

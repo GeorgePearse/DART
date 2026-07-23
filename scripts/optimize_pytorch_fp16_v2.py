@@ -7,7 +7,6 @@ Focuses on approaches that work without triton:
 - Monkey-patching triton for inductor backend
 """
 
-import gc
 import time
 import torch
 from sam3.model_builder import build_sam3_image_model

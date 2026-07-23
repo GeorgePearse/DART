@@ -29,7 +29,6 @@ import argparse
 import os
 import sys
 import time
-from pathlib import Path
 
 import numpy as np
 import torch
@@ -79,7 +78,7 @@ def print_quality(label, scores, boxes, ref_scores, ref_boxes):
     box_cos = cosine_similarity(boxes, ref_boxes)
     score_diff = (scores.float() - ref_scores.float()).abs().max().item()
     box_diff = (boxes.float() - ref_boxes.float()).abs().max().item()
-    print(f"  Quality vs FP32 ref:")
+    print("  Quality vs FP32 ref:")
     print(f"    scores: cos={score_cos:.6f}  max_diff={score_diff:.4e}")
     print(f"    boxes:  cos={box_cos:.6f}  max_diff={box_diff:.4e}")
 
@@ -142,7 +141,6 @@ def main():
     # Load model and prepare inputs
     # ---------------------------------------------------------------
     from PIL import Image
-    from torchvision.transforms import v2
 
     from sam3.model_builder import build_sam3_image_model
     from sam3.model.sam3_multiclass_fast import Sam3MultiClassPredictorFast
@@ -175,7 +173,7 @@ def main():
     text_mask = predictor._batched_mask    # (N, seq)
     N = num_classes
 
-    print(f"\nEncoder-decoder inputs:")
+    print("\nEncoder-decoder inputs:")
     print(f"  img_feats[-1]: {img_feats[-1].shape}")
     print(f"  img_pos[-1]:   {img_pos_embeds[-1].shape}")
     print(f"  text_feats:    {text_feats.shape}")

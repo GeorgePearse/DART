@@ -2,7 +2,6 @@
 
 # pyre-unsafe
 
-import os
 from typing import Optional
 
 import pkg_resources

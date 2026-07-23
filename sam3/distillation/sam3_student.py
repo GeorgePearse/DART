@@ -6,15 +6,13 @@ backbone + FPN adapter. Everything else (encoder, decoder, segmentation head,
 text encoder, scoring) is loaded from the teacher checkpoint and frozen.
 """
 
-from typing import Dict, List, Optional
+from typing import Dict
 
 import pkg_resources
 import torch
 import torch.nn as nn
 from iopath.common.file_io import g_pathmgr
 
-from sam3.model.position_encoding import PositionEmbeddingSine
-from sam3.model.vl_combiner import SAM3VLBackbone
 from sam3.model_builder import (
     _create_dot_product_scoring,
     _create_geometry_encoder,

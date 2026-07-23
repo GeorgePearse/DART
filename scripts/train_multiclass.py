@@ -36,9 +36,7 @@ Usage:
 """
 
 import argparse
-import math
 import os
-import sys
 import time
 
 import torch
@@ -782,7 +780,7 @@ def worker(rank, world_size, args):
 
     if rank == 0:
         print(f"\n{'=' * 60}")
-        print(f"Multi-class single-pass training")
+        print("Multi-class single-pass training")
         print(f"GPUs: {world_size}, batch/GPU: {args.batch_size}")
         print(f"Effective batch size: {world_size * args.batch_size}")
         print(f"{'=' * 60}\n")
@@ -888,7 +886,7 @@ def worker_single(args):
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     print(f"\n{'=' * 60}")
-    print(f"Multi-class single-pass training (single GPU)")
+    print("Multi-class single-pass training (single GPU)")
     print(f"Batch size: {args.batch_size}")
     print(f"{'=' * 60}\n")
 

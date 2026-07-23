@@ -165,7 +165,7 @@ def main():
     # ===================================================================
     # 1. PyTorch FP32 (reference)
     # ===================================================================
-    print(f"\n--- PyTorch FP32 (reference) ---")
+    print("\n--- PyTorch FP32 (reference) ---")
     with torch.inference_mode():
         ref_out = backbone.forward_image(tensor)
     ref_fpn = ref_out["backbone_fpn"][-1]  # last FPN level
@@ -179,7 +179,7 @@ def main():
     # ===================================================================
     # 2. PyTorch FP16 autocast (eager)
     # ===================================================================
-    print(f"\n--- PyTorch FP16 autocast (eager) ---")
+    print("\n--- PyTorch FP16 autocast (eager) ---")
     with torch.inference_mode(), torch.autocast("cuda", dtype=torch.float16):
         fp16_out = backbone.forward_image(tensor)
     fp16_fpn = fp16_out["backbone_fpn"][-1]
@@ -201,7 +201,7 @@ def main():
     )
 
     # Warmup compile (may take 60-120s for max-autotune)
-    print(f"  Compiling (this may take 60-120s for max-autotune)...")
+    print("  Compiling (this may take 60-120s for max-autotune)...")
     t_comp = time.perf_counter()
     with torch.inference_mode(), torch.autocast("cuda", dtype=torch.float16):
         for _ in range(3):
@@ -304,7 +304,7 @@ def main():
         else:
             print(f"  Best correct TRT ({best[0]}, {best[1]:.0f}ms) is slower "
                   f"than torch.compile ({compile_ms:.0f}ms).")
-            print(f"  → Use torch.compile for this GPU.")
+            print("  → Use torch.compile for this GPU.")
     elif trt_results and not ok_engines:
         print(f"  No correct TRT engines found. → Use torch.compile ({compile_ms:.0f}ms).")
 

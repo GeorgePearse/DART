@@ -10,8 +10,6 @@ import time
 import torch
 import tensorrt as trt
 from pathlib import Path
-from PIL import Image
-from torchvision.transforms import v2
 
 from sam3.model_builder import build_sam3_image_model
 from sam3.trt.trt_backbone import TRTBackbone

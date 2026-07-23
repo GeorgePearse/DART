@@ -3,22 +3,12 @@
 # pyre-unsafe
 
 import copy
-import io
-import json
 import logging
 import math
-import os
-import pickle
 import random
-import sys
-from typing import Any, Dict, List, Optional, Set, Tuple, Union
 
-import torch
-import torchvision
 # from decord import cpu, VideoReader
 
-from iopath.common.file_io import PathManager
-from PIL import Image as PILImage
 
 from .sam3_image_dataset import Datapoint, Sam3ImageDataset
 

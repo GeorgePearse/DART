@@ -9,7 +9,6 @@ import logging
 from collections import defaultdict
 from typing import Dict, List, Optional
 
-import numpy as np
 import torch
 from sam3.model import box_ops
 from sam3.model.data_misc import BatchedInferenceMetadata, interpolate

@@ -9,14 +9,12 @@ Also tests stripping individual op types to identify the culprit.
 import sys
 import torch
 import torch.nn as nn
-import numpy as np
 from pathlib import Path
 from collections import Counter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import onnx
-from onnx import TensorProto, helper, numpy_helper
 
 from sam3.model_builder import build_sam3_image_model
 from sam3.trt.rope_onnx import patch_rope_for_export, unpatch_rope
@@ -88,12 +86,12 @@ def analyze_onnx(onnx_path):
 
     print(f"\n  ONNX graph for {onnx_path}:")
     print(f"  Total nodes: {len(graph.node)}")
-    print(f"  Op counts:")
+    print("  Op counts:")
     for op, count in sorted(op_counts.items(), key=lambda x: -x[1]):
         print(f"    {op:30s}: {count}")
 
     # Print all nodes in order
-    print(f"\n  Full graph (in execution order):")
+    print("\n  Full graph (in execution order):")
     for i, node in enumerate(graph.node):
         inputs = [f"{inp}" for inp in node.input[:3]]
         outputs = [f"{out}" for out in node.output[:2]]

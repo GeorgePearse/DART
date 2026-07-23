@@ -165,12 +165,12 @@ def main():
 
     miou = np.mean(ious)
     print(f"\n{'='*60}")
-    print(f"COCO val2017 Instance Segmentation (GT-box-prompted)")
+    print("COCO val2017 Instance Segmentation (GT-box-prompted)")
     print(f"{'='*60}")
     if args.efficient_backbone:
         print(f"  Model:      EfficientSAM3 {args.efficient_backbone} {args.efficient_model}")
     else:
-        print(f"  Model:      SAM3 (ViT-H)")
+        print("  Model:      SAM3 (ViT-H)")
     print(f"  Checkpoint: {args.checkpoint}")
     print(f"  Images:     {len(img_ids)} (skipped {n_skip})")
     print(f"  Annotations: {len(ious)}")

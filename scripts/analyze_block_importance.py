@@ -25,7 +25,6 @@ Usage:
 """
 
 import argparse
-import math
 import sys
 import time
 from pathlib import Path
@@ -274,7 +273,7 @@ def run_analysis(
     print(f"\nFull greedy order as --skip-blocks: \"{skip_str}\"")
 
     # Suggest sweet spots
-    print(f"\nSuggested configs:")
+    print("\nSuggested configs:")
     for n in [4, 8, 12, 16, 24]:
         if n <= len(greedy_order):
             blocks = [b for b, _, _, _ in greedy_order[:n]]

@@ -7,7 +7,6 @@ an unimplementable Conv+Gelu kernel at FP16.
 """
 
 import argparse
-import os
 import sys
 import time
 from pathlib import Path

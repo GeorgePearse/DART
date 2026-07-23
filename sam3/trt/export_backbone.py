@@ -25,10 +25,8 @@ Usage:
 """
 
 import argparse
-import sys
 from pathlib import Path
 
-import numpy as np
 import torch
 import torch.nn as nn
 
@@ -289,7 +287,7 @@ def export_onnx(
         for out in graph.output:
             dims = [d.dim_value or d.dim_param for d in out.type.tensor_type.shape.dim]
             print(f"    {out.name}: {dims}")
-        print(f"  Top ops:")
+        print("  Top ops:")
         for op, count in op_counts.most_common(15):
             print(f"    {op}: {count}")
     except Exception:

@@ -69,7 +69,7 @@ def profile_weight_stats(model):
     print(f"  Total outliers (>4*std): {total_outliers:,} ({total_outliers/total_params*100:.3f}%)")
 
     if problematic:
-        print(f"\n  Layers with |max| > 5:")
+        print("\n  Layers with |max| > 5:")
         for name, mx, std, shape in problematic:
             print(f"    {name}: |max|={mx:.3f}, std={std:.4f}, shape={list(shape)}")
 

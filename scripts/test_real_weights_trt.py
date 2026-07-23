@@ -13,7 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import onnx
-from onnx import TensorProto, helper, numpy_helper
+from onnx import TensorProto, helper
 import tensorrt as trt
 
 from sam3.model_builder import build_sam3_image_model

@@ -453,7 +453,7 @@ class DistillationTrainer:
             self.optimizer.load_state_dict(ckpt["optimizer_state_dict"])
             self.scheduler.load_state_dict(ckpt["scheduler_state_dict"])
             self.scaler.load_state_dict(ckpt["scaler_state_dict"])
-            dist_print(f"  Restored optimizer, scheduler, and scaler state")
+            dist_print("  Restored optimizer, scheduler, and scaler state")
         else:
             # Old-style checkpoint without optimizer state — fast-forward scheduler
             steps_per_epoch = len(self.dataloader)
@@ -474,7 +474,7 @@ class DistillationTrainer:
             )
             return
 
-        dist_print(f"\nStarting distillation training...")
+        dist_print("\nStarting distillation training...")
         if start_epoch > 0:
             dist_print(f"Resuming from epoch {start_epoch + 1}")
         dist_print(f"{'='*60}")

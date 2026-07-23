@@ -13,9 +13,6 @@ from collections import OrderedDict
 from pathlib import Path
 
 import torch
-import torch.nn as nn
-import numpy as np
-from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from sam3.model_builder import build_sam3_image_model
@@ -291,7 +288,7 @@ def main():
         else:
             print("  → QKV projection fits in FP16 too. Check MLP layers.")
     else:
-        print(f"\n  FINDING: Attention scores OVERFLOW FP16!")
+        print("\n  FINDING: Attention scores OVERFLOW FP16!")
         print(f"  Need to scale Q or K by ~{(max_score_scaled / FP16_MAX):.1f}x to fix.")
 
 

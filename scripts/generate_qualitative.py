@@ -19,7 +19,6 @@ import time
 from pathlib import Path
 from typing import Dict, List
 
-import numpy as np
 import torch
 from PIL import Image, ImageDraw, ImageFont
 
@@ -294,7 +293,7 @@ def main():
               f"{', '.join(s['target_classes'])}; {s['n_objects']} objects)")
 
     if args.list_candidates:
-        print(f"\nTop 20 candidates:")
+        print("\nTop 20 candidates:")
         for c in candidates[:20]:
             print(f"  {c['file_name']}  ({c['n_target_classes']} cls: "
                   f"{', '.join(c['target_classes'])}; {c['n_objects']} obj)")
@@ -390,7 +389,7 @@ def main():
         print(f"\nCombined grid saved to {grid_path}")
         print(f"  Grid size: {grid.size[0]}x{grid.size[1]}")
 
-    print(f"\nDone! Re-run with --seed <N> to get different images.")
+    print("\nDone! Re-run with --seed <N> to get different images.")
 
 
 if __name__ == "__main__":

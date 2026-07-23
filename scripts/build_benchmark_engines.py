@@ -75,7 +75,7 @@ def main():
                 "--fp16", "--mixed-precision", "none", "--opt-level", "5",
             ], "Pruned-16 backbone FP16 opt5")
         else:
-            print(f"  WARNING: No pruned ONNX found, skipping")
+            print("  WARNING: No pruned ONNX found, skipping")
     else:
         print(f"  Skipping {pruned_engine} (already exists)")
 

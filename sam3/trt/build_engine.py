@@ -308,7 +308,7 @@ def _list_layers(onnx_path: str):
         type_counts[type_name] += 1
         print(f"  [{i:4d}] {type_name:<24s} {layer.name}")
 
-    print(f"\nLayer type summary:")
+    print("\nLayer type summary:")
     for type_name, count in type_counts.most_common():
         print(f"  {type_name:<24s} {count}")
 

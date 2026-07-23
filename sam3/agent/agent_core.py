@@ -334,7 +334,7 @@ def agent_inference(
                     {
                         "role": "user",
                         "content": [
-                            {"type": "text", "text": f"The raw input image: "},
+                            {"type": "text", "text": "The raw input image: "},
                             {"type": "image", "image": img_path},
                             {
                                 "type": "text",
@@ -342,12 +342,12 @@ def agent_inference(
                             },
                             {
                                 "type": "text",
-                                "text": f"Image with the predicted segmentation mask rendered on it: ",
+                                "text": "Image with the predicted segmentation mask rendered on it: ",
                             },
                             {"type": "image", "image": image_w_mask_i_path},
                             {
                                 "type": "text",
-                                "text": f"Image with the zoomed-in mask: ",
+                                "text": "Image with the zoomed-in mask: ",
                             },
                             {"type": "image", "image": image_w_zoomed_in_mask_i_path},
                         ],

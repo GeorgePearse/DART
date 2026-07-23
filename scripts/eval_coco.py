@@ -301,7 +301,7 @@ def evaluate_config(
         with open(results_file, "w") as f:
             json.dump(coco_results, f)
 
-        print(f"\n  Running pycocotools evaluation ...")
+        print("\n  Running pycocotools evaluation ...")
         coco_dt = coco_gt.loadRes(results_file)
         coco_eval = COCOeval(coco_gt, coco_dt, "bbox")
         coco_eval.params.imgIds = img_ids  # Only evaluate on our subset
@@ -438,7 +438,7 @@ def main():
     configs = [parse_config(c) for c in args.configs]
 
     print(f"\nImages:     {n_images} / {len(all_img_ids)}")
-    print(f"Classes:    80 (COCO)")
+    print("Classes:    80 (COCO)")
     print(f"Default res: {args.imgsz}")
     print(f"Confidence: {args.confidence}")
     print(f"NMS:        {args.nms}")

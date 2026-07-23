@@ -16,7 +16,6 @@ import numpy.typing as npt
 import torch
 import torch.distributed as dist
 import torch.nn.functional as F
-from sam3 import perflib
 from sam3.logger import get_logger
 from sam3.model.box_ops import fast_diag_box_iou
 from sam3.model.data_misc import BatchedDatapoint

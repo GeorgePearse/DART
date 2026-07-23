@@ -269,7 +269,7 @@ def process_variant(
     from PIL import Image
     from torchvision.transforms import v2
 
-    print(f"\nRunning PyTorch reference on CUDA...")
+    print("\nRunning PyTorch reference on CUDA...")
     model = model.cuda()
     image = Image.open(image_path).convert("RGB")
     transform = v2.Compose([

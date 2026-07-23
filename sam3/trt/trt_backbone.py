@@ -14,7 +14,7 @@ Position encodings are deterministic from spatial size (PositionEmbeddingSine)
 and are pre-computed once at init — they are NOT part of the TRT engine.
 """
 
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 
 import torch
 from torch import Tensor

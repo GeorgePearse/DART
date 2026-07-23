@@ -3,7 +3,6 @@
 
 import json
 import subprocess
-import sys
 import time
 
 PYTHON = r"C:\Users\mehme\anaconda3\envs\sam3\python.exe"
@@ -97,7 +96,7 @@ with open("benchmark_all_students.json", "w") as f:
 
 # Print summary table
 print(f"\n\n{'='*80}")
-print(f"VIDEO BENCHMARK RESULTS (3 classes, 1008px, 100 frames)")
+print("VIDEO BENCHMARK RESULTS (3 classes, 1008px, 100 frames)")
 print(f"{'='*80}")
 header = (
     f"  {'Model':<18s}  {'BB(ms)':>7s}  {'EncDec':>7s}  "
@@ -120,4 +119,4 @@ for name, s in all_results.items():
         f"{pipe_ms:>8.1f}  {pipe_fps:>8.1f}  {speedup:>7.2f}x"
     )
 print(f"{'='*80}")
-print(f"\nResults saved to benchmark_all_students.json")
+print("\nResults saved to benchmark_all_students.json")

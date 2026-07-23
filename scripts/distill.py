@@ -134,7 +134,6 @@ def run_phase1(args):
     from sam3.distillation.distill_trainer import (
         DistillationTrainer,
         dist_print,
-        is_main_process,
         setup_distributed,
     )
 
@@ -199,7 +198,7 @@ def run_phase1(args):
     del teacher.geometry_encoder
     del teacher.backbone.language_backbone
     torch.cuda.empty_cache()
-    dist_print(f"\nFreed non-backbone teacher components to save VRAM")
+    dist_print("\nFreed non-backbone teacher components to save VRAM")
 
     if args.resume:
         trainer.resume_from_checkpoint(args.resume)
@@ -305,7 +304,7 @@ def run_phase2(args):
     del teacher.geometry_encoder
     del teacher.backbone.language_backbone
     torch.cuda.empty_cache()
-    dist_print(f"\nFreed non-backbone teacher components to save VRAM")
+    dist_print("\nFreed non-backbone teacher components to save VRAM")
 
     if args.resume:
         trainer.resume_from_checkpoint(args.resume)

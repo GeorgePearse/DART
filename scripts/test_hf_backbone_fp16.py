@@ -7,11 +7,8 @@ avoids the TRT FP16 numerical bug seen with the Meta SAM3 codebase.
 """
 
 import argparse
-import os
-import sys
 from pathlib import Path
 
-import numpy as np
 import torch
 import torch.nn as nn
 

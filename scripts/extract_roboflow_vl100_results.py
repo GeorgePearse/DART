@@ -320,7 +320,7 @@ def analyze_experiment_results(config_path: str) -> None:
         num_categories = len(category_results[super_category])
         print(f"  {super_category}: {avg_score:.4f} (n={num_categories})")
 
-    print(f"\nOverall Results:")
+    print("\nOverall Results:")
     print(f"  Weighted average: {calculate_average(category_averages):.4f}")
     print(f"  Total categories: {len(all_scores)}")
     print(f"  True average: {sum(all_scores) / len(all_scores):.4f}")

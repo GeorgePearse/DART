@@ -2,8 +2,7 @@
 # Modified for EfficientSAM3
 
 import math
-import copy
-from typing import Optional, Sequence, Union, List, Tuple
+from typing import Optional, Union, List, Tuple
 
 import torch
 import torch.nn as nn

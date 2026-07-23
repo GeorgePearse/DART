@@ -558,7 +558,7 @@ def main():
     # --- Sequential benchmark ---
     if run_seq:
         print(f"\n{'='*55}")
-        print(f"SEQUENTIAL: backbone -> enc-dec (no overlap)")
+        print("SEQUENTIAL: backbone -> enc-dec (no overlap)")
         print(f"{'='*55}")
         tracker = make_tracker()
 
@@ -575,12 +575,12 @@ def main():
     if run_pipe:
         print(f"\n{'='*55}")
         if backbone_mode == "trt-split":
-            print(f"TRT-SPLIT-PIPELINED: part1(N+1) || (part2(N) + enc-dec(N))")
+            print("TRT-SPLIT-PIPELINED: part1(N+1) || (part2(N) + enc-dec(N))")
         elif args.split_backbone:
-            print(f"SPLIT-PIPELINED: part1(N+1) || (part2(N) + enc-dec(N))")
+            print("SPLIT-PIPELINED: part1(N+1) || (part2(N) + enc-dec(N))")
             print(f"  split_block={args.split_block}, cuda_graphs={args.cuda_graphs}")
         else:
-            print(f"PIPELINED: backbone(N+1) || enc-dec(N) (CUDA streams)")
+            print("PIPELINED: backbone(N+1) || enc-dec(N) (CUDA streams)")
         print(f"{'='*55}")
         tracker = make_tracker()
 
@@ -628,14 +628,14 @@ def main():
         speedup = seq_ms / pipe_ms if pipe_ms > 0 else 0
 
         print(f"\n{'='*55}")
-        print(f"COMPARISON")
+        print("COMPARISON")
         print(f"{'='*55}")
         print(f"  {'Mode':<15} {'ms/frame':>10} {'FPS':>8} {'Speedup':>10}")
         print(f"  {'-'*15} {'-'*10} {'-'*8} {'-'*10}")
         print(f"  {'Sequential':<15} {seq_ms:>10.1f} {seq_fps:>8.1f} {'1.00x':>10}")
         print(f"  {'Pipelined':<15} {pipe_ms:>10.1f} {pipe_fps:>8.1f} {speedup:>9.2f}x")
         if seq.get("steady_bb_ms"):
-            print(f"\n  Sequential breakdown:")
+            print("\n  Sequential breakdown:")
             print(f"    Backbone:  {seq['steady_bb_ms']:.1f}ms")
             print(f"    Enc-dec:   {seq['steady_pred_ms']:.1f}ms")
             print(f"    Total:     {seq_ms:.1f}ms (sum)")

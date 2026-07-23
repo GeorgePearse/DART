@@ -16,7 +16,6 @@ import time
 from pathlib import Path
 
 import torch
-import numpy as np
 
 
 def export_onnx(prompt: str, output_dir: str = "onnx_whole"):

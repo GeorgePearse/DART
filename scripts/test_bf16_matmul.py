@@ -8,7 +8,6 @@ Tests: pure BF16, FP16+BF16 mixed (MatMul in BF16, rest in FP16).
 import sys
 import time
 import torch
-import numpy as np
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))

@@ -4,10 +4,8 @@
 Tests: baseline, cudnn.benchmark, channels_last, torch.compile, CUDA graphs.
 """
 
-import gc
 import time
 import torch
-import torch.nn.functional as F
 from sam3.model_builder import build_sam3_image_model
 
 device = "cuda"

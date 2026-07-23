@@ -320,7 +320,7 @@ def main():
     if args.trt_enc_dec:
         print(f"Enc-dec:  TRT ({args.trt_enc_dec})")
     else:
-        print(f"Enc-dec:  PyTorch")
+        print("Enc-dec:  PyTorch")
 
     # --- Load model ---
     text_cache_exists = args.text_cache and os.path.exists(args.text_cache)
@@ -545,7 +545,7 @@ def main():
                     raise KeyboardInterrupt
 
     # --- Run pipeline ---
-    print(f"\nProcessing video...")
+    print("\nProcessing video...")
     t_total = time.perf_counter()
     try:
         stats = pipeline.process_video(
@@ -573,7 +573,7 @@ def main():
 
     # --- Print stats ---
     print(f"\n{'='*55}")
-    print(f"RESULTS")
+    print("RESULTS")
     print(f"{'='*55}")
     if args.efficient_backbone:
         bb_label = f"{args.efficient_backbone}/{args.efficient_model}"
@@ -585,7 +585,7 @@ def main():
         bb_label = f"split @ block {args.split_block} + torch.compile({args.compile})"
     else:
         bb_label = f"torch.compile({args.compile})"
-    ed_label = f"TRT" if args.trt_enc_dec else "PyTorch"
+    ed_label = "TRT" if args.trt_enc_dec else "PyTorch"
     print(f"  Backbone:            {bb_label}")
     print(f"  Enc-dec:             {ed_label}")
     print(f"  Frames processed:    {stats['total_frames']}")

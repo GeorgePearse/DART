@@ -140,7 +140,7 @@ def build_backbone_engine(checkpoint_path, imgsz):
 
     print(f"\n{'='*60}")
     print(f"  Backbone TRT engine not found: {engine_path}")
-    print(f"  Building automatically (one-time, takes ~5 min)...")
+    print("  Building automatically (one-time, takes ~5 min)...")
     print(f"{'='*60}\n")
 
     # Step 1: Export ONNX via HF path
@@ -204,7 +204,7 @@ def build_enc_dec_engine(checkpoint_path, imgsz, max_classes=16):
 
     print(f"\n{'='*60}")
     print(f"  Enc-dec TRT engine not found: {engine_path}")
-    print(f"  Building automatically (one-time, takes ~3 min)...")
+    print("  Building automatically (one-time, takes ~3 min)...")
     print(f"{'='*60}\n")
 
     # Step 1: Export ONNX
@@ -428,14 +428,14 @@ def run_labeling(args):
             backbone_engine = build_backbone_engine(args.checkpoint, args.imgsz)
         elif not os.path.exists(backbone_engine):
             print(f"ERROR: Backbone engine not found: {backbone_engine}")
-            print(f"  Remove --trt-backbone to auto-build, or provide a valid path.")
+            print("  Remove --trt-backbone to auto-build, or provide a valid path.")
             sys.exit(1)
 
         if enc_dec_engine is None:
             enc_dec_engine = build_enc_dec_engine(args.checkpoint, args.imgsz)
         elif not os.path.exists(enc_dec_engine):
             print(f"ERROR: Enc-dec engine not found: {enc_dec_engine}")
-            print(f"  Remove --trt-enc-dec to auto-build, or provide a valid path.")
+            print("  Remove --trt-enc-dec to auto-build, or provide a valid path.")
             sys.exit(1)
 
     # Parse merge groups
@@ -665,7 +665,7 @@ Output (COCO):
 
     if args.imgsz % 14 != 0:
         print(f"ERROR: --imgsz must be divisible by 14, got {args.imgsz}")
-        print(f"  Common values: 644, 868, 1008")
+        print("  Common values: 644, 868, 1008")
         sys.exit(1)
 
     if not args.classes:

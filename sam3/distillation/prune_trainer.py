@@ -18,8 +18,6 @@ import time
 from typing import List, Optional, Tuple
 
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
 import torch.distributed as dist
 from torch.cuda.amp import GradScaler, autocast
 from torch.nn.parallel import DistributedDataParallel as DDP
@@ -356,7 +354,7 @@ class PruneDistillTrainer:
             self.optimizer.load_state_dict(ckpt["optimizer_state_dict"])
             self.scheduler.load_state_dict(ckpt["scheduler_state_dict"])
             self.scaler.load_state_dict(ckpt["scaler_state_dict"])
-            dist_print(f"  Restored optimizer, scheduler, and scaler state")
+            dist_print("  Restored optimizer, scheduler, and scaler state")
         else:
             # Old-style checkpoint without optimizer state — fast-forward scheduler
             steps_per_epoch = len(self.dataloader)
@@ -376,7 +374,7 @@ class PruneDistillTrainer:
             )
             return
 
-        dist_print(f"\nStarting pruning self-distillation...")
+        dist_print("\nStarting pruning self-distillation...")
         if start_epoch > 0:
             dist_print(f"Resuming from epoch {start_epoch + 1}")
         dist_print(f"{'='*60}")

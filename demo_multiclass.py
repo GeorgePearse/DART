@@ -305,7 +305,7 @@ def run_multiclass_inference(
                               nms_threshold=nms_threshold)
         if device == "cuda":
             torch.cuda.synchronize()
-        print(f"  Warmup done")
+        print("  Warmup done")
 
     # Timed backbone pass (with CUDA sync for accurate timing)
     if device == "cuda":

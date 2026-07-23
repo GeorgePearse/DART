@@ -24,7 +24,6 @@ Optional:
 """
 
 import argparse
-import sys
 from collections import defaultdict
 
 import torch
@@ -501,7 +500,7 @@ def print_head_analysis(head_results, n_heads=8):
         for h, imp in enumerate(imps):
             head_totals[h] += imp
         count += 1
-    print(f"\n  Avg importance per head index:")
+    print("\n  Avg importance per head index:")
     for h in range(n_heads):
         print(f"    Head {h}: {head_totals[h] / count:.2f}")
     weakest = sorted(range(n_heads), key=lambda h: head_totals[h])
@@ -551,7 +550,7 @@ def print_query_analysis(query_results):
           f"(from 200 queries)")
     print(f"  Largest cluster sizes: {query_results['cluster_sizes']}")
 
-    print(f"\n  Top-10 most similar query pairs:")
+    print("\n  Top-10 most similar query pairs:")
     for i, j, sim in query_results["top_pairs"][:10]:
         print(f"    Q{i:3d} <-> Q{j:3d}  sim={sim:.4f}")
 
@@ -580,14 +579,14 @@ def print_flops(flops):
             return f"{f / 1e9:.2f}G"
         return f"{f / 1e6:.1f}M"
 
-    print(f"\n  Encoder:")
+    print("\n  Encoder:")
     print(f"    Self-attention / layer: {fmt(flops['enc_self_attn_per_layer'])}")
     print(f"    Cross-attention / layer: {fmt(flops['enc_cross_attn_per_layer'])}")
     print(f"    FFN / layer:            {fmt(flops['enc_ffn_per_layer'])}")
     print(f"    Per layer total:        {fmt(flops['enc_per_layer'])}")
     print(f"    All {6} layers:          {fmt(flops['enc_total'])}")
 
-    print(f"\n  Decoder:")
+    print("\n  Decoder:")
     print(f"    Self-attention / layer:        {fmt(flops['dec_self_attn_per_layer'])}")
     print(f"    Cross-attn text / layer:       {fmt(flops['dec_cross_attn_text_per_layer'])}")
     print(f"    Cross-attn image / layer:      {fmt(flops['dec_cross_attn_img_per_layer'])}")
@@ -632,13 +631,13 @@ def print_pruning_recommendations(enc_scores, dec_scores, head_results, ffn_resu
             # Heads with < 50% of max importance are prunable
             prunable_heads += sum(1 for imp in imps if imp < 0.5 * mx)
 
-    print(f"\n  Head Pruning:")
+    print("\n  Head Pruning:")
     print(f"    {prunable_heads}/{total_heads} heads have <50% of max importance "
           f"in their module")
-    print(f"    Recommendation: 8 -> 6 heads (prune 2 weakest per module)")
+    print("    Recommendation: 8 -> 6 heads (prune 2 weakest per module)")
 
     # FFN recommendations
-    print(f"\n  FFN Width Pruning:")
+    print("\n  FFN Width Pruning:")
     for name, imps in sorted(ffn_results.items()):
         imps_t = torch.tensor(imps)
         sorted_imps = imps_t.sort(descending=True).values
@@ -649,14 +648,14 @@ def print_pruning_recommendations(enc_scores, dec_scores, head_results, ffn_resu
               f"2048->1024 retains {100 * kept_1024 / total:.1f}%")
 
     # Query recommendations
-    print(f"\n  Query Pruning:")
+    print("\n  Query Pruning:")
     n_clusters = query_results["clusters_at_0.85"]
     print(f"    {query_results['clusters_at_0.85']} distinct clusters at cosine 0.85")
     rec_queries = min(max(n_clusters, 64), 128)
     print(f"    Recommendation: 200 -> {rec_queries} queries")
 
     # Estimated speedup
-    print(f"\n  Estimated Speedup:")
+    print("\n  Estimated Speedup:")
 
     # Pruned FLOPs estimate
     pruned_flops = estimate_flops(
@@ -681,11 +680,11 @@ def print_pruning_recommendations(enc_scores, dec_scores, head_results, ffn_resu
     print(f"    Theoretical speedup: {speedup_agg:.2f}x")
 
     # Note about backbone
-    print(f"\n  Note: The ViT-H backbone (~1.93T FLOPs) dominates total model")
-    print(f"  latency. For maximum speedup, combine structural pruning with")
-    print(f"  backbone distillation (see scripts/distill.py).")
-    print(f"  Encoder+decoder pruning primarily helps multi-class inference")
-    print(f"  where the encoder/decoder run once per class.")
+    print("\n  Note: The ViT-H backbone (~1.93T FLOPs) dominates total model")
+    print("  latency. For maximum speedup, combine structural pruning with")
+    print("  backbone distillation (see scripts/distill.py).")
+    print("  Encoder+decoder pruning primarily helps multi-class inference")
+    print("  where the encoder/decoder run once per class.")
 
 
 # ─────────────────────────────────────────────────────────────
@@ -1003,7 +1002,7 @@ def apply_pruning(model, encoder, decoder, seg_head,
 
     # 5. Remove cross_attend_prompt from seg head (optional speedup)
     if hasattr(seg_head, "cross_attend_prompt") and seg_head.cross_attend_prompt is not None:
-        print(f"\n  Removing seg_head.cross_attend_prompt")
+        print("\n  Removing seg_head.cross_attend_prompt")
         seg_head.cross_attend_prompt = None
         seg_head.cross_attn_norm = None
 

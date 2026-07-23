@@ -229,7 +229,7 @@ def main():
 
     if not enc_dec_costs:
         enc_dec_costs["default-estimate"] = 14.0
-        print(f"  Using default enc-dec estimate: 14.0ms")
+        print("  Using default enc-dec estimate: 14.0ms")
 
     print(f"\n  Enc-dec costs: {enc_dec_costs}")
 

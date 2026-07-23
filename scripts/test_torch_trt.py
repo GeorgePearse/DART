@@ -118,7 +118,6 @@ def test_torch_trt_dynamo(model, dummy, pt_ref, precision_label, enabled_precisi
 
 def test_torch_compile_trt_backend(model, dummy, pt_ref, precision_label, enabled_precisions):
     """Test torch.compile with tensorrt backend."""
-    import torch_tensorrt  # noqa: registers backend
     from sam3.trt.rope_onnx import patch_rope_for_export, unpatch_rope
 
     print(f"\n{'=' * 80}")

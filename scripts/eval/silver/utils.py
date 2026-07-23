@@ -5,15 +5,11 @@ import json
 import os
 import shutil
 import subprocess
-from io import BytesIO
 from pathlib import Path
 
 import cv2
-import matplotlib.pyplot as plt
-import numpy as np
 import yaml
 from PIL import Image
-from pycocotools import mask as mask_utils
 from tqdm import tqdm
 
 

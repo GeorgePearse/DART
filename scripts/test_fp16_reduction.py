@@ -17,7 +17,6 @@ attention? This might give us most of the speed while keeping accuracy.
 import sys
 import time
 import torch
-import torch.nn as nn
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))

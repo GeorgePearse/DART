@@ -13,13 +13,11 @@ import time
 import torch
 import torch.nn as nn
 from pathlib import Path
-from collections import Counter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from sam3.model_builder import build_sam3_image_model
 from sam3.trt.rope_onnx import patch_rope_for_export, unpatch_rope
-from sam3.model.vitdet import get_abs_pos
 
 import tensorrt as trt
 
@@ -257,7 +255,7 @@ def main():
     fc2_count = sum(1 for n in matmul_names if "fc2" in n)
     attn_count = len(matmul_names) - qkv_count - proj_count - fc1_count - fc2_count
 
-    print(f"\n  MatMul breakdown:")
+    print("\n  MatMul breakdown:")
     print(f"    QKV projection:  {qkv_count}")
     print(f"    Attention (Q@K^T, attn@V): {attn_count}")
     print(f"    Output projection: {proj_count}")
@@ -265,7 +263,7 @@ def main():
     print(f"    MLP fc2: {fc2_count}")
 
     # Show sample names
-    print(f"\n  Sample MatMul names (first 10):")
+    print("\n  Sample MatMul names (first 10):")
     for name in matmul_names[:10]:
         cat = "qkv" if "qkv" in name else "proj" if "proj" in name else "fc1" if "fc1" in name else "fc2" if "fc2" in name else "attn"
         print(f"    [{cat:5s}] {name}")

@@ -148,10 +148,10 @@ Examples:
         args.outdir,
         f"{args.prefix}_fp16_{max_classes}.engine",
     )
-    text_cache_path = os.path.join(args.outdir, f"text_cache_coco.pt")
+    text_cache_path = os.path.join(args.outdir, "text_cache_coco.pt")
 
-    print(f"SAM3 COCO Engine Builder")
-    print(f"========================")
+    print("SAM3 COCO Engine Builder")
+    print("========================")
     print(f"  Checkpoint:    {args.checkpoint}")
     print(f"  Classes:       {max_classes} ({'COCO-80' if not args.classes else 'custom'})")
     print(f"  Resolution:    {args.imgsz}px → {spatial}x{spatial} spatial")
@@ -189,7 +189,7 @@ Examples:
         from sam3.trt.build_engine import build_engine
 
         print(f"\n{'='*60}")
-        print(f"Step 2: Building TRT FP16 engine")
+        print("Step 2: Building TRT FP16 engine")
         print(f"{'='*60}")
 
         t0 = time.time()
@@ -205,7 +205,7 @@ Examples:
         )
         print(f"  Engine build took {time.time() - t0:.1f}s")
     else:
-        print(f"\nSkipping TRT engine build")
+        print("\nSkipping TRT engine build")
 
     # Step 3: Text embedding cache
     if not args.skip_text_cache:
@@ -215,35 +215,35 @@ Examples:
             output_path=text_cache_path,
         )
     else:
-        print(f"\nSkipping text cache")
+        print("\nSkipping text cache")
 
     elapsed = time.time() - t_total
     print(f"\n{'='*60}")
     print(f"Done in {elapsed:.1f}s")
     print(f"{'='*60}")
-    print(f"\nGenerated files:")
+    print("\nGenerated files:")
     for path in [onnx_path, engine_path, text_cache_path]:
         if os.path.exists(path):
             size_mb = os.path.getsize(path) / (1024 * 1024)
             print(f"  {path} ({size_mb:.1f} MB)")
 
-    print(f"\nUsage example:")
-    print(f"  # Single image")
-    print(f"  python demo_multiclass.py \\")
-    print(f"      --image x.jpg \\")
-    print(f"      --classes person car bicycle \\")
-    print(f"      --fast --detection-only \\")
-    print(f"      --compile max-autotune \\")
+    print("\nUsage example:")
+    print("  # Single image")
+    print("  python demo_multiclass.py \\")
+    print("      --image x.jpg \\")
+    print("      --classes person car bicycle \\")
+    print("      --fast --detection-only \\")
+    print("      --compile max-autotune \\")
     print(f"      --trt-enc-dec {engine_path} \\")
     print(f"      --text-cache {text_cache_path} \\")
     print(f"      --imgsz {args.imgsz} --warmup 3")
     print()
-    print(f"  # Video")
-    print(f"  python demo_video.py \\")
-    print(f"      --video input.mp4 \\")
-    print(f"      --classes person car bicycle \\")
+    print("  # Video")
+    print("  python demo_video.py \\")
+    print("      --video input.mp4 \\")
+    print("      --classes person car bicycle \\")
     print(f"      --checkpoint {args.checkpoint} \\")
-    print(f"      --compile max-autotune \\")
+    print("      --compile max-autotune \\")
     print(f"      --trt-enc-dec {engine_path} \\")
     print(f"      --text-cache {text_cache_path} \\")
     print(f"      --imgsz {args.imgsz} --track")

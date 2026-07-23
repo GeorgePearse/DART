@@ -3,7 +3,6 @@
 
 import json
 import subprocess
-import sys
 import time
 
 PYTHON = r"C:\Users\mehme\anaconda3\envs\sam3\python.exe"
@@ -79,7 +78,7 @@ with open("coco_eval_all_students.json", "w") as f:
 # Print summary table
 W = 105
 print(f"\n\n{'='*W}")
-print(f"COMBINED COCO val2017 RESULTS (5000 images, 80 classes)")
+print("COMBINED COCO val2017 RESULTS (5000 images, 80 classes)")
 print(f"{'='*W}")
 header = (
     f"  {'Model':<18s}  {'mAP':>6s}  {'mAP50':>6s}  {'mAP75':>6s}  "
@@ -96,4 +95,4 @@ for r in all_results:
         f"{r.get('AR100', 0):>6.3f}  {r['avg_ms']:>6.0f}ms"
     )
 print(f"{'='*W}")
-print(f"\nResults saved to coco_eval_all_students.json")
+print("\nResults saved to coco_eval_all_students.json")

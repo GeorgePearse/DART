@@ -247,7 +247,7 @@ def make_attention_onnx(seq_len, dim, num_heads, output_path, num_blocks=1,
         if b == num_blocks - 1:
             # Final rename to Y
             rename_shape = np.array([1, seq_len, dim], dtype=np.int64)
-            initializers.append(helper.make_tensor(f"final_shape", TensorProto.INT64,
+            initializers.append(helper.make_tensor("final_shape", TensorProto.INT64,
                                                    [3], rename_shape))
             nodes.append(helper.make_node("Reshape", [block_out, "final_shape"], ["Y"]))
         prev_name = block_out

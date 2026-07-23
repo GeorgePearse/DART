@@ -383,7 +383,7 @@ class Sam3MultiClassPredictorFast:
                     self._batched_mask = data["mask"]
                     print(f"  Loaded text embeddings from cache: {text_cache}")
                     return
-                print(f"  Cache class mismatch, recomputing text embeddings")
+                print("  Cache class mismatch, recomputing text embeddings")
 
         text_outputs = self.model.backbone.forward_text(
             class_names, device=self.device

@@ -11,7 +11,6 @@ import sys
 import traceback
 from collections import Counter
 from dataclasses import dataclass
-from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
 
 import torch

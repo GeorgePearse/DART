@@ -10,7 +10,6 @@ import json
 import os
 import re
 import subprocess
-import sys
 import time
 
 PYTHON = r"C:\Users\mehme\anaconda3\envs\sam3\python.exe"

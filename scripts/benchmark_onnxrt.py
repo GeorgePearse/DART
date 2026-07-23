@@ -66,7 +66,7 @@ def benchmark_provider(session, input_name, input_np, output_names, ref_dict, n_
     print(f"  P95: {p95:.1f}ms")
 
     # Accuracy
-    print(f"  Cosine similarity vs PyTorch FP32:")
+    print("  Cosine similarity vs PyTorch FP32:")
     for i, name in enumerate(output_names):
         key = f"fpn_{i}"
         if key in ref_dict:

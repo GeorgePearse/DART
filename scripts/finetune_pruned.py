@@ -898,7 +898,7 @@ def worker(rank, world_size, args):
     if use_student_bb:
         dist_print(f"  Student backbone: {args.student_backbone}")
     else:
-        dist_print(f"  Backbone: shared ViT-H (teacher)")
+        dist_print("  Backbone: shared ViT-H (teacher)")
     dist_print("=" * 60)
 
     # --- Load pruning config ---
@@ -1034,7 +1034,7 @@ def worker(rank, world_size, args):
                             backbone_config=args.student_backbone)
 
     dist_print(f"\nDone! Best loss: {best_loss:.4f}")
-    dist_print(f"Use the finetuned checkpoint with demo_multiclass.py:")
+    dist_print("Use the finetuned checkpoint with demo_multiclass.py:")
     dist_print(f"  python demo_multiclass.py --image x.jpg --classes person car --checkpoint {best_path}")
 
     cleanup_distributed()
@@ -1061,7 +1061,7 @@ def worker_single(args):
     if use_student_bb:
         print(f"  Student backbone: {args.student_backbone}")
     else:
-        print(f"  Backbone: shared ViT-H (teacher)")
+        print("  Backbone: shared ViT-H (teacher)")
     print("=" * 60)
 
     from sam3.model_builder import load_pruned_config

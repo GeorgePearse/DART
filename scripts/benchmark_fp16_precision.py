@@ -76,7 +76,6 @@ def build_and_benchmark_engine(
     workspace_gb=4.0, opt_level=3, n_warmup=5, n_runs=20,
 ):
     """Build a TRT engine with the given strategy, benchmark speed and accuracy."""
-    import tensorrt as trt
     from sam3.trt.trt_backbone import TRTBackbone
 
     engine_path = f"backbone_{strategy}.engine"
@@ -225,7 +224,7 @@ def main():
         )
 
     # Detailed per-output cosines
-    print(f"\nPer-output cosine similarities:")
+    print("\nPer-output cosine similarities:")
     for r in results:
         if "error" in r:
             continue

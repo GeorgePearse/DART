@@ -646,7 +646,7 @@ class CGF1Evaluator:
         self.coco_evals[0]._paramsEval = copy.deepcopy(self.coco_evals[0].params)
 
         if self.verbose:
-            print(f"Accumulating results")
+            print("Accumulating results")
         self.coco_evals[0].accumulate()
         print("cgF1 metric, IoU type={}".format(self.iou_type))
         self.coco_evals[0].summarize()

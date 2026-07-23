@@ -8,7 +8,6 @@ If it still fails, the issue is in the compounding of MatMul errors.
 import sys
 import time
 import torch
-import numpy as np
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))

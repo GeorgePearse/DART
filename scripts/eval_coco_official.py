@@ -181,8 +181,8 @@ def evaluate_config(
         print(f"  Skipped:   {len(skip_set)} full blocks: {sorted(skip_set)}")
     print(f"  FP16:      {use_fp16}")
     print(f"  Presence:  {'disabled (detection_only)' if detection_only else 'enabled'}")
-    print(f"  NMS:       disabled (official mode)")
-    print(f"  Conf thr:  0.0 (no filtering)")
+    print("  NMS:       disabled (official mode)")
+    print("  Conf thr:  0.0 (no filtering)")
     print(f"{'='*70}")
 
     # Create predictor — always detection_only=True to skip mask generation
@@ -295,7 +295,7 @@ def evaluate_config(
         with open(results_file, "w") as f:
             json.dump(coco_results, f)
 
-        print(f"\n  Running pycocotools evaluation ...")
+        print("\n  Running pycocotools evaluation ...")
         coco_dt = coco_gt.loadRes(results_file)
         coco_eval = COCOeval(coco_gt, coco_dt, "bbox")
         coco_eval.params.imgIds = img_ids
@@ -433,12 +433,12 @@ def main():
     configs = [parse_config(c) for c in args.configs]
 
     print(f"\nImages:     {n_images} / {len(all_img_ids)}")
-    print(f"Classes:    80 (COCO)")
+    print("Classes:    80 (COCO)")
     print(f"Default res: {args.imgsz}")
-    print(f"NMS:        disabled (official mode)")
-    print(f"Conf thr:   0.0 (no filtering)")
-    print(f"Max dets:   unlimited (COCOeval default: 100)")
-    print(f"Rounding:   disabled (full float precision)")
+    print("NMS:        disabled (official mode)")
+    print("Conf thr:   0.0 (no filtering)")
+    print("Max dets:   unlimited (COCOeval default: 100)")
+    print("Rounding:   disabled (full float precision)")
     print(f"Configs:    {[c['name'] for c in configs]}")
     if args.trt_enc_dec:
         print(f"Default enc-dec: {args.trt_enc_dec}")
@@ -513,7 +513,7 @@ def main():
     W = 105
     print(f"\n\n{'='*W}")
     print(f"COCO val2017 EVALUATION — OFFICIAL MODE  ({n_images} images, 80 classes)")
-    print(f"  No NMS | No conf filter | No det cap | Full precision")
+    print("  No NMS | No conf filter | No det cap | Full precision")
     print(f"{'='*W}")
     header = (
         f"  {'Config':<18s}  {'Res':>4s}  {'Pruned':>6s}  "

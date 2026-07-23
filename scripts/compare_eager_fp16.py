@@ -3,7 +3,6 @@
 
 import argparse
 import torch
-import numpy as np
 from PIL import Image
 from torchvision.transforms import v2
 

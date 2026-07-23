@@ -60,7 +60,6 @@ def main():
 
     from torchvision.transforms import v2
 
-    from torchvision.transforms import v2
 
     with torch.inference_mode():
         resized = image.resize((1008, 1008), Image.BILINEAR)
@@ -119,7 +118,7 @@ def main():
     trt_fpn = trt_out["backbone_fpn"]
     trt_dict = {f"fpn_{i}": trt_fpn[i] for i in range(len(trt_fpn))}
 
-    print(f"\n  Cosine similarity vs PyTorch FP32:")
+    print("\n  Cosine similarity vs PyTorch FP32:")
     for k in ref_keys:
         if k in trt_dict:
             cos = cosine_similarity(ref_dict[k], trt_dict[k])

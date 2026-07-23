@@ -2,7 +2,7 @@
 
 # pyre-unsafe
 
-from dataclasses import dataclass, field as field_ptr_behaviour, fields, is_dataclass
+from dataclasses import fields, is_dataclass
 from typing import Any, get_args, get_origin, List, Union
 
 import torch

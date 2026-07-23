@@ -95,7 +95,6 @@ def simplify_onnx(input_path, output_path):
 def fold_constants_gs(input_path, output_path):
     """Use onnx-graphsurgeon to fold constants and clean up."""
     import onnx_graphsurgeon as gs
-    import numpy as np
 
     print(f"  Graph surgery on {input_path} -> {output_path}...")
     graph = gs.import_onnx(onnx.load(input_path))

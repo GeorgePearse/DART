@@ -6,7 +6,6 @@ engines, and compares against PyTorch to isolate where precision is lost.
 """
 
 import sys
-import time
 import torch
 import numpy as np
 from pathlib import Path

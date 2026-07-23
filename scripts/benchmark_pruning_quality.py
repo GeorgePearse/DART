@@ -370,7 +370,7 @@ def evaluate_config(
     if use_trt_enc_dec:
         print(f"  Enc-dec: TRT ({os.path.basename(trt_enc_dec_path)})")
     else:
-        print(f"  Enc-dec: PyTorch")
+        print("  Enc-dec: PyTorch")
     print(f"{'='*60}")
 
     # Create predictor for this config

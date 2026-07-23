@@ -122,7 +122,7 @@ def test_matmul_accum():
     max_diff = (C_fp32 - C_fp16.float()).abs().max().item()
     rel = ((C_fp32 - C_fp16.float()).abs() / C_fp32.abs().clamp(min=1e-6)).mean().item()
 
-    print(f"    PyTorch FP16 MatMul (5184x1024 @ 1024x3072):")
+    print("    PyTorch FP16 MatMul (5184x1024 @ 1024x3072):")
     print(f"      cosine={cos:.6f}, max_diff={max_diff:.4f}, mean_rel_err={rel:.6f}")
     print(f"      Result range: FP32=[{C_fp32.min().item():.1f}, {C_fp32.max().item():.1f}], "
           f"FP16=[{C_fp16.float().min().item():.1f}, {C_fp16.float().max().item():.1f}]")

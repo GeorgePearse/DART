@@ -276,7 +276,7 @@ def export_split_onnx(output_dir, split_block, imgsz=1008, mask_blocks=None):
 
     # Verify Part1
     dummy_pixels = torch.randn(1, 3, imgsz, imgsz)
-    print(f"Running Part1 forward pass...")
+    print("Running Part1 forward pass...")
     with torch.no_grad():
         intermediate = part1(dummy_pixels)
     print(f"  Part1 output: {list(intermediate.shape)}")  # [1, P, P, D]
@@ -284,7 +284,7 @@ def export_split_onnx(output_dir, split_block, imgsz=1008, mask_blocks=None):
         f"Expected [1, {P}, {P}, {D}], got {list(intermediate.shape)}"
 
     # Verify Part2
-    print(f"Running Part2 forward pass...")
+    print("Running Part2 forward pass...")
     with torch.no_grad():
         fpn0, fpn1, fpn2 = part2(intermediate)
     print(f"  fpn_0: {list(fpn0.shape)}")
@@ -435,7 +435,7 @@ def export_onnx(output_dir, imgsz=1008, mask_blocks=None, skip_blocks=None,
 
     # Load distilled weights from a pruned checkpoint (Meta→HF conversion)
     if pruned_checkpoint:
-        print(f"Loading distilled weights from pruned checkpoint...")
+        print("Loading distilled weights from pruned checkpoint...")
         ckpt_skip = _load_pruned_checkpoint_into_hf(
             model.vision_encoder, pruned_checkpoint
         )
@@ -575,7 +575,7 @@ def run_pytorch_reference(image_path, imgsz=1008, mask_blocks=None, skip_blocks=
 
     # Load distilled weights if provided (must match the TRT engine weights)
     if pruned_checkpoint:
-        print(f"  Loading distilled weights for reference...")
+        print("  Loading distilled weights for reference...")
         ckpt_skip = _load_pruned_checkpoint_into_hf(
             model.vision_encoder, pruned_checkpoint
         )
