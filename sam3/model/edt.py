@@ -5,8 +5,28 @@
 """Triton kernel for euclidean distance transform (EDT)"""
 
 import torch
-import triton
-import triton.language as tl
+
+try:
+    import triton
+    import triton.language as tl
+
+    HAS_TRITON = True
+except ImportError:  # CPU-only installs (e.g. torch CPU wheels) ship no triton.
+    HAS_TRITON = False
+
+    class _TritonJitStub:
+        """Lets the module (and the @triton.jit kernel def) import without
+        triton; actually launching the kernel is guarded in edt_triton."""
+
+        @staticmethod
+        def jit(fn=None, **_kwargs):
+            return fn if fn is not None else (lambda f: f)
+
+    class _TritonLanguageStub:
+        constexpr = object
+
+    triton = _TritonJitStub()
+    tl = _TritonLanguageStub()
 
 """
 Disclaimer: This implementation is not meant to be extremely efficient. A CUDA kernel would likely be more efficient.
@@ -127,6 +147,11 @@ def edt_triton(data: torch.Tensor):
         A tensor of the same shape as data containing the EDT.
         It should be equivalent to a batched version of cv2.distanceTransform(input, cv2.DIST_L2, 0)
     """
+    if not HAS_TRITON:
+        raise RuntimeError(
+            "edt_triton requires triton, which ships with CUDA builds of "
+            "PyTorch. Install a CUDA torch wheel (or `pip install triton`)."
+        )
     assert data.dim() == 3
     assert data.is_cuda
     B, H, W = data.shape

@@ -1,8 +1,28 @@
 import torch
-import triton
-import triton.language as tl
 
-__all__ = ["TritonRMSNorm2dFunc"]
+try:
+    import triton
+    import triton.language as tl
+
+    HAS_TRITON = True
+except ImportError:  # CPU-only installs (e.g. torch CPU wheels) ship no triton.
+    HAS_TRITON = False
+
+    class _TritonJitStub:
+        """Lets the kernel defs import without triton; TritonRMSNorm2d falls
+        back to a pure-torch implementation when HAS_TRITON is False."""
+
+        @staticmethod
+        def jit(fn=None, **_kwargs):
+            return fn if fn is not None else (lambda f: f)
+
+    class _TritonLanguageStub:
+        constexpr = object
+
+    triton = _TritonJitStub()
+    tl = _TritonLanguageStub()
+
+__all__ = ["HAS_TRITON", "TritonRMSNorm2dFunc"]
 
 
 @triton.jit

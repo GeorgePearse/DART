@@ -16,7 +16,11 @@ from typing import Any, Callable, Dict, List, Optional, Set, Tuple, Union
 import torch
 import torch.utils.data
 import torchvision
-from decord import cpu, VideoReader
+
+try:
+    from decord import cpu, VideoReader
+except ImportError:  # decord has no wheels on some platforms (e.g. aarch64);
+    cpu = VideoReader = None  # only video datasets need it — fail at use, not import.
 from iopath.common.file_io import g_pathmgr
 from PIL import Image as PILImage
 from PIL.Image import DecompressionBombError
@@ -201,6 +205,12 @@ class CustomCocoDetectionAPI(VisionDataset):
             try:
                 if ".mp4" in path and path[-4:] == ".mp4":
                     # Going to load a video frame
+                    if VideoReader is None:
+                        raise RuntimeError(
+                            "Loading video frames requires decord "
+                            "(`pip install decord`), which is unavailable on "
+                            "this platform."
+                        )
                     video_path, frame = path.split("@")
                     video = VideoReader(video_path, ctx=cpu(0))
                     # Convert to PIL image
