@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main, improvements]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Ruff (configured in pyproject.toml)
+        run: pipx run ruff check .
+      - name: Byte-compile everything
+        run: python -m compileall -q sam3 scripts demo_multiclass.py demo_video.py
+
+  install-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: System deps for opencv
+        run: sudo apt-get update && sudo apt-get install -y libgl1 libglib2.0-0
+      - name: Install package (CPU torch)
+        run: |
+          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install -e .
+      - name: Import smoke test
+        run: python -c "import sam3; print('sam3 imports OK')"

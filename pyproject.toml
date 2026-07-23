@@ -137,3 +137,18 @@ testpaths = ["tests"]
 python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E9", "F"]
+ignore = [
+    # Vendored research code uses star imports heavily; not worth churning.
+    "F403",
+    # Unused variables often document intent in research scripts.
+    "F841",
+    # False positives from closures captured before a trailing `del`
+    # (scripts/benchmark_backbone.py) and star-import name resolution.
+    "F821",
+]
