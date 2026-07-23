@@ -203,9 +203,8 @@ def agent_inference(
     while generated_text is not None:
         save_debug_messages(messages, debug, debug_folder_path, debug_jsonl_path)
         assert (
-            "<tool>" in generated_text,
-            f"Generated text does not contain <tool> tag: {generated_text}",
-        )
+            "<tool>" in generated_text
+        ), f"Generated text does not contain <tool> tag: {generated_text}"
         generated_text = generated_text.split("</tool>", 1)[0] + "</tool>"
         tool_call_json_str = (
             generated_text.split("<tool>")[-1]

@@ -57,8 +57,30 @@ def reset_bn(
     import torch.nn.functional as F
     from tqdm import tqdm
 
-    # from efficientvit.apps.utils import AverageMeter, is_master, sync_tensor
     from ..utils import get_device, list_join
+
+    # Minimal single-process stand-ins for efficientvit.apps.utils
+    # (AverageMeter / is_master / sync_tensor) — the vendored subset dropped
+    # the distributed helpers, which left reset_bn raising NameError.
+    class AverageMeter:
+        def __init__(self, is_distributed: bool = False) -> None:
+            self.sum = 0.0
+            self.count = 0
+
+        def update(self, val: torch.Tensor, delta_n: int = 1) -> None:
+            self.count += delta_n
+            self.sum = self.sum + val * delta_n
+
+        @property
+        def avg(self) -> torch.Tensor:
+            return self.sum / max(self.count, 1)
+
+    def sync_tensor(tensor: torch.Tensor, reduce: str = "mean") -> torch.Tensor:
+        # Single-process: nothing to synchronize.
+        return tensor
+
+    def is_master() -> bool:
+        return True
 
     bn_mean = {}
     bn_var = {}

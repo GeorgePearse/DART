@@ -8,8 +8,6 @@ import torch.nn.functional as F
 import torchvision.transforms as transforms
 from segment_anything import SamAutomaticMaskGenerator
 from segment_anything.modeling import MaskDecoder, PromptEncoder, TwoWayTransformer
-from segment_anything.modeling.mask_decoder import MaskDecoder
-from segment_anything.modeling.prompt_encoder import PromptEncoder
 from segment_anything.utils.amg import build_all_layer_point_grids
 from segment_anything.utils.transforms import ResizeLongestSide
 from torchvision.transforms.functional import resize, to_pil_image
